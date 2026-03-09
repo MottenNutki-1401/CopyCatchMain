@@ -1,0 +1,30 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -290px; /* hidden first */
+  width: 250px;
+  height: 100vh;
+  background-color: lightblue;
+  padding: 20px;
+  transition: left 0.3s ease;
+}
+
+.sidebar.open {
+  left: 0; /* shows sidebar */
+}
+
+.close-btn {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 15px 0;
+}

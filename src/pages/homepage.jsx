@@ -1,7 +1,21 @@
-import "../styles/homepage.css";
+import { useState } from "react";
+import "../styles/homepage.css"
+import Header from "../assets/components/header.jsx";
+import Sidebar from "../assets/components/sidebar.jsx";
 
 function Homepage() {
-  return <h1>heloooo meow</h1>;
+  const [isSidebarOpen,setIsSidebarOpen] = useState(false);
+
+  return (
+    <div className="homepage-container">
+          <Header toggleSidebar={() => setIsSidebarOpen(true)} />
+            <Sidebar 
+            isOpen={isSidebarOpen}
+            closeSidebar={() => setIsSidebarOpen(false)} />
+          <h1>meow</h1>
+    </div>
+  );
 }
+
 
 export default Homepage;
