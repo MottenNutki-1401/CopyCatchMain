@@ -7,17 +7,20 @@
   background-color: lightblue;
   padding: 20px;
   transition: left 0.3s ease;
+  position: fixed;
 }
 
 .sidebar.open {
   left: 0; /* shows sidebar */
 }
 
-.close-btn {
+.closed-btn {
   margin-bottom: 20px;
   padding: 10px;
   width: 100%;
-  cursor: pointer;
+  cursor: pointer; 
+  color: #000000;
+  background-color: #ee8de8;
 }
 
 .sidebar ul {
@@ -26,5 +29,22 @@
 }
 
 .sidebar li {
-  margin: 15px 0;
+  margin: 15px 0; 
+  cursor: pointer;
+}
+.home-btn , .files-btn , .reports-btn , .logout-btn {
+  list-style: none;
+   width: 100%;
+  padding: 10px;
+  color: #000000;
+  background-color: #73bcd7;
+}
+
+.logout-sidebar {
+  width: 90%;
+  padding: 10px;
+ position: absolute;
+  bottom: 50px;
+  left: 0;
+  margin: 15px 0; 
 }

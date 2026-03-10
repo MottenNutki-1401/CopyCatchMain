@@ -1,0 +1,32 @@
+.file-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: hotpink;
+  color: rgb(237, 237, 237);
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+.file-picker {
+  margin-top: 20px;
+}
+
+.drop-area {
+  border: 1px solid #000000;
+  padding: 70px;
+  width: 500px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #86c5ff;
+  cursor: pointer;
+}
+.submit-btn, .cancel-btn{
+
+   width: 100%;
+  padding: 10px;
+  color: #000000;
+  background-color: #73bcd7; 
+}
