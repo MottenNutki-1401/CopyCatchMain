@@ -64,13 +64,13 @@ function App() {
             color: "white",
             border: "none",
             padding: "10px 20px",
-            borderRadius: "5px",
+            borderRadius: "5px", //
             cursor: "pointer",
             fontSize: "16px"
           }}
         >
           Upload Files
-        </button>
+        </button>//
 
       </div>
 
