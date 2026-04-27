@@ -1,7 +1,9 @@
 import { useState } from "react";
+import ResultsTable from "./components/ResultsTable";
 
 function App() {
   const [files, setFiles] = useState([]);
+  const [results, setResults] = useState([]); // store similarity results
 
   const handleFileChange = (event) => {
     setFiles(event.target.files);
@@ -20,6 +22,10 @@ function App() {
     });
 
     const data = await response.json();
+
+    // store results from backend
+    setResults(data.results || []);
+
     alert(data.message);
   };
 
@@ -31,7 +37,7 @@ function App() {
       alignItems: "center",
       height: "100vh",
       width: "210vh",
-      backgroundColor: "#f1f3f4"
+      backgroundColor: "#e4fc8e"
     }}>
 
       <div style={{
@@ -42,9 +48,7 @@ function App() {
         textAlign: "center"
       }}>
 
-        <h2 style={{ 
-          marginBottom: "20px",
-          backgroundColor: "#0b7002" }}>
+        <h2 style={{ marginBottom: "20px", backgroundColor: "#0b7002" }}>
           Upload Student Submissions
         </h2>
 
@@ -52,7 +56,7 @@ function App() {
           type="file"
           multiple
           onChange={handleFileChange}
-          style={{ marginBottom: "20px",  backgroundColor: "#008b5b"   }}
+          style={{ marginBottom: "20px", backgroundColor: "#008b5b" }}
         />
 
         <br />
@@ -64,13 +68,16 @@ function App() {
             color: "white",
             border: "none",
             padding: "10px 20px",
-            borderRadius: "5px", //
+            borderRadius: "5px",
             cursor: "pointer",
             fontSize: "16px"
           }}
         >
-          Upload Files
-        </button>//
+          Analyze Files
+        </button>
+
+        {/* SHOW TABLE ONLY AFTER RESULTS */}
+        {results.length > 0 && <ResultsTable results={results} />}
 
       </div>
 

@@ -1,54 +1,69 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
-#httpexception=> return error like if file not supported
-from typing import List, Annotated#expecting multi files
-from services.text_extractor import extract_text #txt extraction
-import os #interact with os, creating folders etc
+# httpexception => return error like if file not supported
 
-router = APIRouter() #router obj inside this file
+from services.similarity import compute_all_similarities
+from services.preprocess import clean_text
+from services.text_extractor import extract_text  # txt extraction
 
-UPLOAD_FOLDER ="uploads" #uploaded files will be stored here
-os.makedirs(UPLOAD_FOLDER, exist_ok=True) #exist_ok=True prevents an error if the folder already exists
+import os  # interact with os, creating folders etc
 
 
-#making rules: text files allowed only
+router = APIRouter()  # router obj inside this file
+
+
+UPLOAD_FOLDER = "uploads"  # uploaded files will be stored here
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # prevents error if exists
+
+
+# making rules: allowed file types
 ALLOWED_EXTENSIONS = {".pdf", ".docx", ".txt"}
 
-@router.post("/upload") #this endp wil recieve the files
-async def upload_files(files: Annotated[List[UploadFile], File(...)]):
-    saved_files = [] #storing names of saved files
+
+@router.post("/upload")  # this endp will receive the files
+async def upload_files(files: list[UploadFile] = File(...)):
+
+    saved_files = []  # storing names of saved files
+    texts = []  # storing extracted + cleaned text
 
     for file in files:
-        file_path = os.path.join(UPLOAD_FOLDER,file.filename)
 
+        # get file extension
         extension = os.path.splitext(file.filename)[1].lower()
 
-         # Check if the extension is NOT in the allowed list
+        # Check if the extension is NOT in the allowed list
         if extension not in ALLOWED_EXTENSIONS:
-
-            # If the file type is invalid, raise an HTTP error
-            # status_code 400 means "Bad Request"
             raise HTTPException(
                 status_code=400,
                 detail=f"{file.filename} is not a supported file type"
             )
 
-        # Create the full path where the file will be saved
-        # Example: uploads/essay.pdf
+        # Create file path
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
 
+        # Save file to uploads folder
         with open(file_path, "wb") as buffer:
-         buffer.write(await file.read())
+            buffer.write(await file.read())
 
         # extract text from the saved file
         text = extract_text(file_path)
 
-        # print preview (first 200 characters)
+        # print preview (for debugging)
         print(f"\n--- {file.filename} ---")
         print(text[:200])
 
+        # preprocessing text (cleaning)
+        cleaned = clean_text(text)
+
+        # store cleaned text
+        texts.append(cleaned)
+
+        # store filename
         saved_files.append(file.filename)
 
+    # compute similarity for ALL files
+    results = compute_all_similarities(texts, saved_files)
+
     return {
-        "message": "Files uploaded successfully",
-        "files": saved_files
+        "message": "Files uploaded and analyzed",
+        "results": results
     }
