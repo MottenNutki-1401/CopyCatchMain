@@ -1,9 +1,12 @@
-from fastapi import FastAPI #import FastAPI class from the FastAPI lib
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes.upload import router as upload_router
-from routes.upload import router as upload_router
 
-app = FastAPI() #create a fast api application stored in var (app)
+# import routes
+from routes.upload import router as upload_router
+from routes.similarity import router as similarity_router  
+from routes.spelling import router as spelling_router
+
+app = FastAPI()
 
 # allow frontend requests
 app.add_middleware(
@@ -14,9 +17,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.get("/") #for requests like urls so (/)
+@app.get("/")
 def read_root():
-    return {"message: Backend Running...."}#run localhost to view
+    return {"message": "Backend Running...."}
 
+# include routes
 app.include_router(upload_router)
+app.include_router(similarity_router)  
+app.include_router(spelling_router)
