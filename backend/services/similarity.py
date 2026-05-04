@@ -1,10 +1,15 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from services.preprocess import clean_text  
 
 def compute_all_similarities(texts, filenames):
+
+    # clean txt (only for similarity)
+    cleaned_texts = [clean_text(t) for t in texts]
+
     # convert all documents into vectors
     vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform(texts)
+    tfidf_matrix = vectorizer.fit_transform(cleaned_texts)
 
     # compute similarity matrix
     similarity_matrix = cosine_similarity(tfidf_matrix)

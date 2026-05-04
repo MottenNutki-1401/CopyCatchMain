@@ -1,7 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from services.preprocess import clean_text
 from services.text_extractor import extract_text
-
 import os
 
 router = APIRouter()
@@ -10,7 +8,6 @@ UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {".pdf", ".docx", ".txt"}
-
 
 @router.post("/upload")
 async def upload_files(files: list[UploadFile] = File(...)):
@@ -38,9 +35,7 @@ async def upload_files(files: list[UploadFile] = File(...)):
         print(f"\n--- {file.filename} ---")
         print(text[:200])
 
-        cleaned = clean_text(text)
-
-        texts.append(cleaned)
+        texts.append(text)  # raw txt only
         saved_files.append(file.filename)
 
     return {

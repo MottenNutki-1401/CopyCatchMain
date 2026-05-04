@@ -1,0 +1,14 @@
+[33m53b6f27[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: commit: spelling wrong algo
+[33mee8f9fc[m HEAD@{1}: checkout: moving from BFend to main
+[33m25a6d40[m[33m ([m[1;32mBFend[m[33m)[m HEAD@{2}: commit: Spelling but need to remove txt processing in algo
+[33m50783f2[m[33m ([m[1;31morigin/BFend[m[33m)[m HEAD@{3}: commit: Similarity + logic UI
+[33mee8f9fc[m HEAD@{4}: checkout: moving from main to BFend
+[33mee8f9fc[m HEAD@{5}: commit: dummy UI similarity + spelling check 60%
+[33mb6ae27d[m HEAD@{6}: commit: cosine + TFIDF similarity
+[33m58a04ad[m HEAD@{7}: commit: removed git submodule
+[33m6aa55a2[m HEAD@{8}: commit: text extraction
+[33m35255c4[m HEAD@{9}: commit: running server again
+[33mb89305a[m HEAD@{10}: pull origin main --allow-unrelated-histories: Merge made by the 'ort' strategy.
+[33m67978ad[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{11}: checkout: moving from master to main
+[33m67978ad[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{12}: commit: dummy Ui
+[33m9a66150[m HEAD@{13}: commit (initial): Dummy Ui
