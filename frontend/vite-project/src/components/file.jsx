@@ -99,7 +99,7 @@ return (
 
       <div className="btns">
         <button className="compare-btn" onClick={handleUpload}>
-          Compare
+          ANALYZE
         </button>
 
         <button className="cancel-btn" onClick={handleCancel}>

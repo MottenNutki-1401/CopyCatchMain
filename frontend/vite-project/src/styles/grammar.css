@@ -1,6 +1,6 @@
 /* MAIN LAYOUT */
 
-.result-layout1 {
+.result-layout2 {
   display: flex;
   gap: 20px;
   width: 90%;
@@ -10,25 +10,28 @@
 }
 
 
-.table-wrapper1 {
+
+
+.table-wrapper2 {
   flex: 6; /* bigger side */
   height: 600px;
   overflow-y: auto;
 
   background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.357);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 
-.mistake-panel1 {
+
+.mistake-panel2 {
   flex: 4; /* smaller side */
   height: 600px;
   overflow-y: auto;
 
   background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.357);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 
   padding: 0;
 }
@@ -36,14 +39,14 @@
 
 /* TABLE */
 
-.result-table1 {
+.result-table2 {
   width: 100%;
 }
 
 
 /* TABLE HEADER */
 
-.table-header1 {
+.table-header2 {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr;
   padding: 14px;
@@ -59,7 +62,7 @@
 }
 
 /* TABLE cCOLS */
-.table-row1 span {
+.table-row2 span {
   border-right: 2px solid rgba(0,0,0,0.1);
 
    min-width: 0;
@@ -72,21 +75,20 @@
   align-items: center;
 }
 
-.table-row1 span:last-child,
-.table-header1 span:last-child {
+.table-row2 span:last-child,
+.table-header2 span:last-child {
   border-right: none;
 }
 
-
-
 /* TABLE ROWS */
 
-.table-row1 {
- display: grid;
+.table-row2 {
+  display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr;
   padding: 14px;
   
   
+
   background: rgb(255, 255, 255);
   border-bottom: 1px solid #eee;
 
@@ -95,21 +97,40 @@
      min-width: 0;
 }
 
-.table-row1:nth-child(even) {
-   background: #ffefa0;
+.table-row2:nth-child(even) {
+  background: #ffefa0;
 }
 
-.table-row1:hover {
+.table-row2:hover {
   background: #e2c948;
 }
 
-.table-row1:last-child {
+.table-row2:last-child {
   border-bottom: none;
 }
 
 
-/* NEKO HEADER  */
 
+
+/* NEKO HEADER */
+
+.nekobox {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background: #ffd000;
+  font-weight: bold;
+  text-align: center;
+
+  padding: 14px;
+  margin: 0;
+
+  border-radius: 10px 10px 0 0;
+}
+
+
+/* MISTAKE CONTENT */
 .nekobox1 {
   position: sticky;
   top: 0;
@@ -126,7 +147,6 @@
   margin: 0;
 
   border-radius: 10px 10px 0 0;
-
 }
 .dl-but{
   background: rgb(244, 236, 176);
@@ -134,35 +154,18 @@
   padding: 6px 12px;
   border: none;
   cursor: pointer;
-  border: 1px solid rgb(69, 67, 45);
 }
 
-/* MISTAKE CONTENT */
-
-.mistake-box1 {
-  width: 100%;
-  max-width: 500px;
-
-  height: 400px;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  white-space: normal;        /* allow wrapping */
-  word-break: normal;         /* don't break inside words */
-  overflow-wrap: break-word;  /* break ONLY if needed */
-
-  line-height: 1.6;
-
-  padding: 15px;
-  border: 2px solid orange;
-  background: #fff;
-
-  text-align: left;
+.mistake-box2 {
+  padding: 20px;
+  background: rgb(244, 236, 176);
+  min-height: 1000px; /* for testing scroll */
 }
+
 
 /* TITLE */
 
-.title1 {
+.title2 {
   color: #000;
   padding: 20px;
   margin-bottom: 10px;

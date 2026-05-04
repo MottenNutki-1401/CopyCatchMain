@@ -70,7 +70,14 @@
   position: relative;
 }
 
-.compare-btn,
+.compare-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold; 
+  background-color: #1a73e8;
+}
 .cancel-btn {
   width: 100%;
   padding: 12px;
@@ -82,7 +89,13 @@
   border: none;
   border-radius: 10px;
 }
+.compare-btn:hover {
+  background-color: #66ffb8;
+}
 
+.cancel-btn:hover {
+  background-color: #999;
+}
 
 .sidebar-btn {
   background-color: rgb(255, 255, 255);
