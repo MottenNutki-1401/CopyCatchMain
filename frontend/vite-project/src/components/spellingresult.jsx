@@ -24,7 +24,7 @@ function SpellingResult() {
     );
   }
 
-  // ✨ Normalize function (important for matching)
+  //Normalize function (important for matching)
   const normalize = (word) => {
     return word.toLowerCase().replace(/[^a-z']/gi, "");
   };
@@ -83,7 +83,7 @@ function SpellingResult() {
             ) : (
               <div style={{ lineHeight: "1.8" }}>
                 {(selectedFile.original_text || "")
-                  .split(/(\s+)/) // ✅ keeps spaces + formatting
+                  .split(/(\s+)/) // keeps spaces + formatting
                   .map((token, index) => {
 
                     // If it's just space/newline → render normally
