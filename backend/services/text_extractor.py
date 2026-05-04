@@ -3,8 +3,14 @@ import docx
 
 # extract text from TXT
 def extract_txt(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        return f.read()
+    try:
+        # Try UTF-8 first (modern standard)
+        with open(file_path, "r", encoding="utf-8") as f:
+            return f.read()
+    except UnicodeDecodeError:
+        # Fallback for Windows-encoded files (like Word/Notepad)
+        with open(file_path, "r", encoding="cp1252") as f:
+            return f.read()
 
 
 # extract text from DOCX

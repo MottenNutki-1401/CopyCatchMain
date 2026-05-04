@@ -24,6 +24,11 @@ function SpellingResult() {
     );
   }
 
+  // ✨ Normalize function (important for matching)
+  const normalize = (word) => {
+    return word.toLowerCase().replace(/[^a-z']/gi, "");
+  };
+
   return (
     <div className="file-container1">
 
@@ -76,26 +81,33 @@ function SpellingResult() {
             {!selectedFile ? (
               <p>Select a file to view mistakes</p>
             ) : (
-              <div>
-                {(selectedFile.original_text || "").split(" ").map((word, index) => {
-                  const clean = word.replace(/[^\w]/g, "").toLowerCase();
+              <div style={{ lineHeight: "1.8" }}>
+                {(selectedFile.original_text || "")
+                  .split(/(\s+)/) // ✅ keeps spaces + formatting
+                  .map((token, index) => {
 
-                  const isWrong =
-                    (selectedFile.misspelled_words || []).includes(clean);
+                    // If it's just space/newline → render normally
+                    if (/^\s+$/.test(token)) {
+                      return <span key={index}>{token}</span>;
+                    }
 
-                  return (
-                    <span
-                      key={index}
-                      style={{
-                        color: isWrong ? "red" : "black",
-                        textDecoration: isWrong ? "underline" : "none",
-                        marginRight: "5px"
-                      }}
-                    >
-                      {word}
-                    </span>
-                  );
-                })}
+                    const clean = normalize(token);
+
+                    const isWrong =
+                      (selectedFile.misspelled_words || []).includes(clean);
+
+                    return (
+                      <span
+                        key={index}
+                        style={{
+                          color: isWrong ? "red" : "black",
+                          textDecoration: isWrong ? "underline" : "none",
+                        }}
+                      >
+                        {token}
+                      </span>
+                    );
+                  })}
               </div>
             )}
 
