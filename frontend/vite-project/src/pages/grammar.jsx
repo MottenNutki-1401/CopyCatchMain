@@ -6,6 +6,8 @@ import Header from "../components/header.jsx";
 import Sidebar from "../components/sidebar.jsx";
 
 import { handleDrop, handleDragOver, handleFileChange } from "../components/dragdrop"; 
+import { uploadFiles, getGrammar } from "../api/api"; //IMPORTANT
+
 import egg from "../assets/egg.svg";
 import book2 from "../assets/book2.png";
 
@@ -14,16 +16,38 @@ function Grammar() {
   const [files, setFiles] = useState([]);
   const navigate = useNavigate();
 
-  const handleUpload = () => {
-    const fakeResult = {
-      files: files.map((file) => ({
-        name: file.name,
-        mostSimilar: "file10.pdf",
-        similarity: Math.floor(Math.random() * 100),
-      })),
-    };
+  const handleUpload = async () => {
+    if (files.length === 0) {
+      alert("Please select files first!");
+      return;
+    }
 
-    navigate("/GrammarResult", { state: fakeResult });
+    const formData = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
+
+    try {
+      // upload
+      const uploadData = await uploadFiles(formData);
+      console.log("UPLOAD:", uploadData);
+
+      //  grammar analysis
+      const grammarData = await getGrammar(uploadData);
+      console.log("GRAMMAR:", grammarData);
+
+      
+      navigate("/grammar-result", {
+        state: {
+          files: grammarData.results //IMPORTANT
+        }
+      });
+
+    } catch (error) {
+      console.error("Grammar error:", error);
+      alert("Something went wrong!");
+    }
   };
 
   const handleCancel = () => {
@@ -43,40 +67,40 @@ function Grammar() {
         <div className="upload-box">
           <h1 className="Title">Grammar checker</h1>
 
+          {/* DROP AREA */}
+          {files.length === 0 && (
+            <div
+              className="drop-area"
+              onDrop={(e) => handleDrop(e, setFiles)}
+              onDragOver={handleDragOver}
+            >
+              <p>Drop files here or click to choose files</p>
 
-          {/* dropping shows if no files yet */}
-        {files.length === 0 && (
-          <div
-            className="drop-area"
-            onDrop={(e) => handleDrop(e, setFiles)}
-            onDragOver={handleDragOver}
-          >
-            <p>Drop files here or click to choose files</p>
+              <input
+                type="file"
+                multiple
+                onChange={(e) => handleFileChange(e, setFiles)}
+                className="file-input"
+              />
+            </div>
+          )}
 
-            <input
-              type="file"
-              multiple
-              onChange={(e) => handleFileChange(e, setFiles)}
-              className="file-input"
-            />
-          </div>
-        )}
+          {/* FILE LIST */}
+          {files.length > 0 && (
+            <div className="file-list">
+              {files.map((file, index) => (
+                <div className="file-item" key={index}>
+                  {file.name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
-        {/* SHOW FILE LIST AFTER UPLOAD */}
-        {files.length > 0 && (
-          <div className="file-list">
-            {files.map((file, index) => (
-              <div className="file-item" key={index}>
-                {file.name}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-        <div className="btns"> {/* compare btn is for check too */}
+        {/* BUTTONS */}
+        <div className="btns">
           <button className="compare-btn" onClick={handleUpload}>
-           Check
+            Check
           </button>
 
           <button className="cancel-btn" onClick={handleCancel}>

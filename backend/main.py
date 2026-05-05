@@ -5,13 +5,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.upload import router as upload_router
 from routes.similarity import router as similarity_router  
 from routes.spelling import router as spelling_router
+from routes.grammar import router as grammar_router 
 
 app = FastAPI()
 
 # allow frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -25,3 +29,4 @@ def read_root():
 app.include_router(upload_router)
 app.include_router(similarity_router)  
 app.include_router(spelling_router)
+app.include_router(grammar_router)

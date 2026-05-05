@@ -32,3 +32,16 @@ export const getSpelling = async (data) => {
   });
   return res.json();
 };
+
+//grammar 
+export const getGrammar = async (data) => {
+  const res = await fetch(`${BASE_URL}/grammar`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return res.json();
+};
