@@ -10,6 +10,7 @@ import learn from "../assets/learn.svg";
 
 import File from "../components/file.jsx";
 import Spelling from "../pages/spelling.jsx";
+import Grammar from "../pages/grammar.jsx";
 
 function Homepage ({ setPage }) {
   const [isSidebarOpen,setIsSidebarOpen] = useState(false);
