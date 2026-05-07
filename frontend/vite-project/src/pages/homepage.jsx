@@ -46,8 +46,7 @@ function Homepage ({ setPage }) {
           
           <button className="btn4"
             type="button"
-           onClick={() => navigate("/result")}>
-            result</button>
+            onClick={() => navigate("/grading")}>Automated Grading</button>
    
     </div>
         <img className="egg2" src={egg} alt="Egg" />
