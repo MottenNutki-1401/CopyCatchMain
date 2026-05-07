@@ -8,8 +8,7 @@
   overflow: hidden;
 }
 
-
-/* ritle for weights */
+/* TITLE FOR WEIGHTS */
 .weight-header {
   margin-bottom: 10px;
 }
@@ -29,38 +28,55 @@
 /* LEFT SIDE */
 .grading-left {
   flex: 4;
+
   display: flex;
   flex-direction: column;
+
   gap: 20px;
+
   overflow-y: auto;
+
   padding-right: 10px;
 }
 
 /* RIGHT SIDE */
 .grading-right {
   flex: 6;
+
   border-radius: 12px;
+
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
   height: 100%;
+
   overflow-y: auto;
+
   background: white;
+
+  padding: 10px;
 }
 
 /* TOP BAR */
 .top-bar {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   background: #FFC727;
+
   padding: 5px;
+
   border-radius: 12px;
-  
+
   gap: 5px;
 }
 
 .title11 {
   margin: 0;
+
   font-size: 26px;
+
   font-weight: bold;
 }
 
@@ -68,11 +84,14 @@
 .compare-btn1,
 .cancel-btn1 {
   padding: 8px 14px;
-  border-radius: 20px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
 
+  border-radius: 20px;
+
+  border: none;
+
+  font-weight: bold;
+
+  cursor: pointer;
 }
 
 .compare-btn1:hover {
@@ -85,24 +104,30 @@
   color: #fff;
 }
 
-/* NEW WEIGHT SYSTEM */
-
+/* WEIGHT BOX */
 .weight-box {
   background: white;
+
   padding: 5px;
+
   border-radius: 12px;
+
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 
   display: flex;
   flex-direction: column;
+
   gap: 5px;
 }
 
 /* DROPDOWN */
 .preset-select {
   padding: 8px;
+
   border-radius: 8px;
+
   border: 1px solid #ccc;
+
   cursor: pointer;
 }
 
@@ -110,84 +135,101 @@
 .weight-inputs {
   display: flex;
   flex-direction: column;
+
   gap: 0px;
 }
 
 .input-row {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
 }
 
 .input-row input {
   width: 70px;
+
   padding: 5px;
+
   border-radius: 6px;
+
   border: 1px solid #ccc;
+
   text-align: center;
 }
 
 /* TOTAL */
 .total {
   margin-top: 5px;
-  font-weight: bold;
 
+  font-weight: bold;
 }
 
 .total.error {
   color: red;
 }
 
-
 /* UPLOAD BOX */
-
-
 .upload-box1 {
   width: 96%;
+
   max-height: 350px;
+
   padding: 10px;
 
   display: flex;
   flex-direction: column;
+
   gap: 10px;
+
   overflow-y: auto;
 
   background-color: #FFC727;
+
   border-radius: 10px;
-  border: 1px solid  #ffffff;
+
+  border: 1px solid #ffffff;
 }
 
 /* FILE LIST */
 .file-list {
   display: flex;
   flex-direction: column;
+
   gap: 5px;
 }
 
 .file-item {
   background: white;
+
   padding: 8px;
+
   border-radius: 6px;
 }
 
-.file-input{
-    background: white;
-    width: 98%;
+.file-input {
+  background: white;
+
+  width: 98%;
 }
 
 /* DOWNLOAD BUTTON */
-
-
 .dl-but11 {
-  position: fixed; /* 👈 FIXED (no more weird drifting) */
+  position: fixed;
+
   bottom: 20px;
   right: 20px;
 
   background: rgb(251, 222, 0);
+
   border-radius: 20px;
+
   padding: 10px 16px;
+
   border: 1px solid rgb(0, 0, 0);
+
   cursor: pointer;
+
   z-index: 10;
 }
 
@@ -195,33 +237,34 @@
   background: rgb(251, 109, 0);
 }
 
-/* RESULT TABLE right */
+/* geade table */
 
-.result-table1 {
+.grading-result-table {
   display: flex;
+
   flex-direction: column;
 
-  gap: 5px;
+  gap: 8px;
 
-  min-width: 500px;
+  width: 100%;
 }
 
 /* TABLE HEADER */
 
-.table-header1 {
+.grading-table-header {
   display: grid;
 
   grid-template-columns:
-    0.5fr
-    0.5fr
-    0.5fr
-    0.5fr
-    0.5fr
-    0.5fr;
+    1.5fr
+    1fr
+    1fr
+    1fr
+    1fr
+    1fr;
 
   background: #FFC727;
 
-  padding: 10px;
+  padding: 12px;
 
   border-radius: 10px;
 
@@ -229,25 +272,24 @@
 
   text-align: center;
 
-  position: sticky;
+  align-items: center;
 
-  top: 0;
-
-  z-index: 5;
+  font-size: 14px;
 }
 
 /* TABLE ROW */
 
-.table-row1 {
+.grading-table-row {
   display: grid;
 
   grid-template-columns:
-      0.5fr
-      0.5fr
-      0.5fr
-      0.5fr
-      0.5fr
-      0.5fr;
+    1.5fr
+    1fr
+    1fr
+    1fr
+    1fr
+    1fr;
+
   background: #fff7d1;
 
   padding: 12px;
@@ -259,8 +301,20 @@
   align-items: center;
 
   transition: 0.2s;
+
+  font-size: 14px;
+
+  word-break: break-word;
 }
 
-.table-row1:hover {
+.grading-table-row:hover {
   background: #ffe27a;
+}
+
+/* DISABLE BUTTON */
+.compare-btn1:disabled {
+  opacity: 0.9;
+  background: #1802bd;
+
+  cursor: not-allowed;
 }

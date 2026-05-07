@@ -24,6 +24,9 @@ function Grading() {
 
   const [mode, setMode] = useState("standard");
 
+  //load
+  const [loading, setLoading] = useState(false);
+
   // WEIGHTS
   const [weights, setWeights] = useState({
     grammar: 40,
@@ -93,7 +96,8 @@ function Grading() {
     }
 
     try {
-
+       //loading
+       setLoading(true);
       // upload endpoint
       const uploadData = await uploadFiles(formData);
 
@@ -110,9 +114,13 @@ function Grading() {
       // set results
       setResults(gradingData.results || []);
 
+      //loading false
+      setLoading(false);
+
     } catch (error) {
 
       console.error("Grading error:", error);
+      setLoading(false);
 
     }
   };
@@ -150,12 +158,13 @@ function Grading() {
 
             <div className="top-bar">
 
-              <button
-                className="compare-btn1"
-                onClick={handleAnalyze}
-              >
-                Check
-              </button>
+                      <button
+                      className="compare-btn1"
+                      onClick={handleAnalyze}
+                      disabled={loading}
+                         >
+                      {loading ? "Checking..." : "Check"}
+                    </button>
 
               <button
                 className="cancel-btn1"
@@ -322,10 +331,10 @@ function Grading() {
               {/* RIGHT SIDE */}
               <div className="grading-right">
 
-                <div className="result-table1">
+                <div className="grading-result-table">
 
                   {/* TABLE HEADER */}
-                  <div className="table-header1">
+                  <div className="grading-table-header">
 
                     <span>File Name</span>
 
@@ -344,7 +353,7 @@ function Grading() {
                   {/* RESULTS */}
                   {results.map((r, i) => (
 
-                    <div className="table-row1" key={i}>
+                    <div className="grading-table-row" key={i}>
 
                       <span>{r.file}</span>
 
