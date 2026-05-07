@@ -45,3 +45,18 @@ export const getGrammar = async (data) => {
 
   return res.json();
 };
+
+//grading
+export const getGrades = async (data) => {
+  const res = await fetch(`${BASE_URL}/grading`, {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(data)
+  });
+
+  return res.json();
+};

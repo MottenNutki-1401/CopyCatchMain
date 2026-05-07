@@ -85,7 +85,7 @@
   color: #fff;
 }
 
-/* ✅ NEW WEIGHT SYSTEM */
+/* NEW WEIGHT SYSTEM */
 
 .weight-box {
   background: white;
@@ -193,4 +193,74 @@
 
 .dl-but11:hover {
   background: rgb(251, 109, 0);
+}
+
+/* RESULT TABLE right */
+
+.result-table1 {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  min-width: 500px;
+}
+
+/* TABLE HEADER */
+
+.table-header1 {
+  display: grid;
+
+  grid-template-columns:
+    0.5fr
+    0.5fr
+    0.5fr
+    0.5fr
+    0.5fr
+    0.5fr;
+
+  background: #FFC727;
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  text-align: center;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 5;
+}
+
+/* TABLE ROW */
+
+.table-row1 {
+  display: grid;
+
+  grid-template-columns:
+      0.5fr
+      0.5fr
+      0.5fr
+      0.5fr
+      0.5fr
+      0.5fr;
+  background: #fff7d1;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  text-align: center;
+
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.table-row1:hover {
+  background: #ffe27a;
 }
