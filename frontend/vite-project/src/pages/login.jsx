@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../api/supabase";
+
 import "../styles/login.css";
 import egg from "../assets/egg.svg";
 import learn from "../assets/learn.svg";
@@ -6,19 +9,51 @@ import learn from "../assets/learn.svg";
 function Login() {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleLogin(e) {
+    e.preventDefault();
+
+    const { data, error } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    console.log(data);
+
+    navigate("/home");
+  }
+
   return (
     <div className="login-container">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          navigate("/home");
-        }}
-      >
+      <form onSubmit={handleLogin}>
         <div className="hugs">
           <h1 className="helo">Welcome!</h1>
 
-          <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+          />
 
           <button className="login-btn" type="submit">
             LOGIN
