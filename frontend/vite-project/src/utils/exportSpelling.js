@@ -7,7 +7,7 @@ export const exportSpellingPDF = (results) => {
 
   doc.setFontSize(18);
 
-  doc.text("CopyCatch Spelling Report", 14, 20);
+  doc.text("Spelling Report Summary", 14, 20);
 
   autoTable(doc, {
 
