@@ -6,6 +6,8 @@ import Header from "./header.jsx";
 import Sidebar from "./sidebar.jsx";
 import { useState } from "react";
 
+import { exportGrammarPDF } from "../utils/exportGrammar";
+
 function GrammarResult() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -37,6 +39,12 @@ function GrammarResult() {
 
         {/* LEFT TABLE */}
         <div className="table-wrapper2">
+                      <button
+                          className="dl-but"
+                          onClick={() => exportGrammarPDF(resultData.files)}
+                        >
+                          download
+                        </button>
           <div className="result-table2">
 
             <div className="table-header2">
@@ -67,7 +75,7 @@ function GrammarResult() {
         <div className="mistake-panel2">
           <div className="nekobox1">
             <h2>Grammatical Mistakes</h2>
-            <button className="dl-but">download</button>
+            
           </div>
 
           <div className="mistake-box2">
